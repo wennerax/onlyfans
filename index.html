@@ -3,27 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnlyFans</title>
+    <title>Видеоплеер на весь экран</title>
     <style>
-        body {
+        body, html {
             margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            color: white;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
         }
-        img {
-            max-width: 100%;
-            max-height: 100%;
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <audio autoplay>
-        <source src="https://drive.google.com/file/d/1ZPe3G4-NSU8GlpwtJy9R7M5Wp394Hgmf/view?usp=sharing type="audio/mpeg">
-    </audio>
-    <img src="https://i.imgur.com/17ZP4BE.mp4" alt="Скример">
+
+<video id="myVideo" autoplay muted playsinline>
+    <source src="https://i.imgur.com/z4lNhAt.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+</video>
+
+<script>
+    document.body.requestFullscreen(); // Запрашиваем полноэкранный режим
+    const video = document.getElementById('myVideo');
+
+    // Снимаем "без звука", показываем видео в звуковом режиме
+    video.muted = false; // Звук включен
+    video.play().catch(err => {
+        console.error("Ошибка воспроизведения:", err);
+    });
+</script>
+
 </body>
 </html>
